@@ -1,4 +1,4 @@
-import { Col, Row, Form, Container } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import Showcase from "./Showcase";
 
 const Home = () => {
@@ -8,9 +8,6 @@ const Home = () => {
     
         <Row>
           <Col>
-            <Form>
-            <Form.Control placeholder="Search" />
-            </Form>
             <Showcase/>
           </Col>
         </Row>
