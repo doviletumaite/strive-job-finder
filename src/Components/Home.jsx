@@ -1,18 +1,22 @@
-import {Col, Row, Form} from "react-bootstrap"
+import { Col, Row, Form, Container } from "react-bootstrap";
+import Showcase from "./Showcase";
 
 const Home = () => {
-return (
-    <di>
-        <h1 className="text-center m-3">Strive Job Finder</h1>
-        <Form>
-  <Row>
-    <Col>
-      <Form.Control placeholder="Search" />
-    </Col>
-  </Row>
-</Form>
-    </di>
-)
-}
+  return (
+    <Container fluid>
+      <h1 className="text-center m-3">Strive Job Finder</h1>
+    
+        <Row>
+          <Col>
+            <Form>
+            <Form.Control placeholder="Search" />
+            </Form>
+            <Showcase/>
+          </Col>
+        </Row>
+    
+   </Container>
+  );
+};
 
-export default Home
+export default Home;
