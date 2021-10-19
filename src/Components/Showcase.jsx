@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import Cards from "./Cards";
+import SearchBar from "./SearchBar";
 // import SearchBar from "./SearchBar";
 
 const Showcase = () => {
@@ -24,7 +25,12 @@ const Showcase = () => {
     }
   };
 
-  const updateInput = async (input) => {
+  const updateInput = (e) => {
+      setInput(e.target.value)
+  }
+  const handleSubmit = async (e) => {
+      e.preventDefault()
+  }
     const filtered = jobsDefault.filter((job) => {
       if (input === "") {
         return jobs;
@@ -35,7 +41,7 @@ const Showcase = () => {
         setJobs(filtered);
       }
     });
-  };
+  
 
   useEffect(() => {
     fetchJobs();
@@ -43,9 +49,7 @@ const Showcase = () => {
 
   return (
     <div>
-      <Form>
-        <Form.Control input={input} onChange={updateInput} />
-      </Form>
+     <SearchBar />
       <Cards jobs={jobs} id={jobs.id} />
     </div>
   );
