@@ -28,8 +28,8 @@ const Showcase = () => {
           } else {
               job.toLowerCase().includes(input.toLowerCase())
                 console.log("input",input)
-      setInput(input)
-      setJobs(filtered)
+           setInput(input)
+           setJobs(filtered)
           }
       })
     
