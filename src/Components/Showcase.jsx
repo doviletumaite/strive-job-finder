@@ -56,7 +56,7 @@ const Showcase = () => {
      <Form.Label>Search a job!</Form.Label>
            <Form.Control type="text" value={query} onChange={e => setQuery(e.target.value)} placeholder="search" />
        </Form>
-      <Cards jobs={jobs} id={jobs.id} />
+      <Cards jobs={jobs} id={jobs._id} />
     </div>
   );
 };
