@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BookmarkHeart } from "react-bootstrap-icons"
+import { BookmarkHeart, BookmarkHeartFill } from "react-bootstrap-icons"
+import { addToFavourite, removeFromFavourite } from "../store/actions";
 
-const DetailsRedux = ({ match }) => {
+const mapStateToProps = s => s
+const addDispatchToProps = (dispatch) =>{
+    addToFavourite: (job) => dispatch({
+        type: 'ADD_TO_FAVOURITE',
+        payload: job
+    })
+    removeFromFavourite: (job) => dispatch({
+        type: 'REMOVE_FROM_FAVOURITE',
+        payload: job
+    })
+}
+const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchJobs = async () => {
@@ -29,14 +41,21 @@ const DetailsRedux = ({ match }) => {
     fetchJobs();
   }, [match.params.jobID]);
   
+  const isFav = favourite.includes(thatJob)
+  const toggleFavourite = isFav ? addToFavourite : removeFromFavourite
 
   return( 
   
   <div>
    <Link to="/"><Button variant="light" className="m-5">HOME</Button></Link>
                <Card className="m-5">
-               <Card.Header as="h5">{data.title} 
-               <BookmarkHeart className="mx-5"/>
+                <Card.Header as="h5">{data.title}   
+           {
+               isFav
+               ?    <BookmarkHeartFill className="mx-5" onClick={() => toggleFavourite(job._id)}/>
+               :  <BookmarkHeart className="mx-5" onClick={toggleFavourite}/>
+           }
+               
                </Card.Header>
                <Card.Header as="h6"><strong>Category: </strong>{data.category}</Card.Header>
                <Card.Body>
