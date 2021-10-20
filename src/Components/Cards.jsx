@@ -17,7 +17,7 @@ const Cards = ({jobs, id }) => {
                <Card.Body>
                  <Card.Title>{jobs.company_name}</Card.Title>
                  <Card.Text>
-                 {jobs.description}
+                 <div dangerouslySetInnerHTML={{ __html: jobs.description }}></div>
                  </Card.Text>
                 <Button variant="primary">{jobs.url}</Button>
                </Card.Body>
