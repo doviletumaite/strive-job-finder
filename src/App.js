@@ -7,6 +7,7 @@ function App() {
   return (
    <Router>
      <Route path="/" exact component={Home}/>
+     <Route exact path="/companyName" />
    </Router>
   );
 }
