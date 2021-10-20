@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BookmarkHeart } from "react-bootstrap-icons"
 
-const Details = ({ match }) => {
+const DetailsRedux = ({ match }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchJobs = async () => {
@@ -34,7 +35,9 @@ const Details = ({ match }) => {
   <div>
    <Link to="/"><Button variant="light" className="m-5">HOME</Button></Link>
                <Card className="m-5">
-               <Card.Header as="h5">{data.title}</Card.Header>
+               <Card.Header as="h5">{data.title} 
+               <BookmarkHeart className="mx-5"/>
+               </Card.Header>
                <Card.Header as="h6"><strong>Category: </strong>{data.category}</Card.Header>
                <Card.Body>
                  <Card.Title>{data.company_name}</Card.Title>
@@ -50,4 +53,4 @@ const Details = ({ match }) => {
   );
 };
 
-export default Details;
+export default DetailsRedux;

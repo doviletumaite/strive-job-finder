@@ -1,5 +1,7 @@
 import { Card, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { BookmarkHeart } from "react-bootstrap-icons"
+import { Link } from "react-router-dom";
 
 // import { Link } from "react-router-dom";
 
@@ -13,13 +15,15 @@ const Cards = ({jobs, id }) => {
   {jobs.slice(0, 10).map(jobs => (
                <Card className="m-5">
                <Card.Header as="h5"><div jobs={jobs} id={jobs._id} onClick={() => history.push('/details/' + jobs._id)
-              } >{jobs.title}</div></Card.Header>
+              } >
+                   <BookmarkHeart className="mx-5"/>
+                {jobs.title}</div></Card.Header>
                <Card.Body>
                  <Card.Title>{jobs.company_name}</Card.Title>
                  <Card.Text>
                  <div dangerouslySetInnerHTML={{ __html: jobs.description }}></div>
                  </Card.Text>
-                <Button variant="primary">{jobs.url}</Button>
+                 <Link to={{ pathname: jobs.url }} target='_blank'>{jobs.url}</Link>
                </Card.Body>
              </Card>
   ))}
