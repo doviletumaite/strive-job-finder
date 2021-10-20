@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 import Cards from "./Cards";
 
 // import SearchBar from "./SearchBar";
@@ -30,10 +30,10 @@ const Showcase = () => {
   // const handleChange = (e) => {
   //     setInput(e.target.value)
   // }
-  // const handleSubmit = async (e) => {
-  //     e.preventDefault()
-  //     fetchJobs()
-  // }
+  const handleSubmit = async (e) => {
+      e.preventDefault()
+      fetchJobs()
+  }
   //   const filtered = jobsDefault.filter((job) => {
   //     if (input === "") {
   //       return jobs;
@@ -52,9 +52,10 @@ const Showcase = () => {
 
   return (
     <div>
+      <Form onSubmit={handleSubmit}>
      <Form.Label>Search a job!</Form.Label>
            <Form.Control type="text" value={query} onChange={e => setQuery(e.target.value)} placeholder="search" />
-       
+       </Form>
       <Cards jobs={jobs} id={jobs.id} />
     </div>
   );
