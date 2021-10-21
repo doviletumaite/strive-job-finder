@@ -3,9 +3,10 @@ import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BookmarkHeart, BookmarkHeartFill } from "react-bootstrap-icons"
 import { addToFavourite, removeFromFavourite } from "../store/actions";
+import { connect } from "react-redux";
 
 const mapStateToProps = s => s
-const addDispatchToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) =>{
     addToFavourite: (job) => dispatch({
         type: 'ADD_TO_FAVOURITE',
         payload: job
@@ -42,7 +43,7 @@ const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite })
   }, [match.params.jobID]);
   
   const isFav = favourite.includes(thatJob)
-  const toggleFavourite = isFav ? addToFavourite : removeFromFavourite
+  const toggleFavourite = isFav ? addToFavourite(thatJob) : removeFromFavourite(thatJob)
 
   return( 
   
@@ -72,4 +73,4 @@ const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite })
   );
 };
 
-export default DetailsRedux;
+export default connect(mapStateToProps, mapDispatchToProps)(DetailsRedux);
