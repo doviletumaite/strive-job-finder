@@ -6,17 +6,11 @@ import { addToFavourite, removeFromFavourite } from "../store/actions";
 import { connect } from "react-redux";
 
 const mapStateToProps = s => s
-const mapDispatchToProps = (dispatch) =>{
-    addToFavourite: (job) => dispatch({
-        type: 'ADD_TO_FAVOURITE',
-        payload: job
-    })
-    removeFromFavourite: (job) => dispatch({
-        type: 'REMOVE_FROM_FAVOURITE',
-        payload: job
-    })
-}
-const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite }) => {
+const mapDispatchToProps = (dispatch) =>({
+    addToFav: (job) => dispatch(addToFavourite(job)),
+    removeFromFav: (job) => dispatch(removeFromFavourite(job))
+})
+const DetailsRedux = ({ match, favourites, addToFav, removeFromFav }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchJobs = async () => {
@@ -32,7 +26,7 @@ const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite })
             const jobs = arrayjobs.data;
             const thatJob = jobs.find(j => j._id == id)
             console.log("that job", thatJob)
-         setData(thatJob);
+            setData(thatJob);
          }
       
       } catch (error) {
@@ -42,8 +36,8 @@ const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite })
     fetchJobs();
   }, [match.params.jobID]);
   
-  const isFav = favourite.includes(thatJob)
-  const toggleFavourite = isFav ? addToFavourite(thatJob) : removeFromFavourite(thatJob)
+  const isFav = favourites.includes(data)
+  const toggleFavourite = isFav ? addToFav(data) : removeFromFav(data)
 
   return( 
   
@@ -53,7 +47,7 @@ const DetailsRedux = ({ match, favourite, addToFavourite, removeFromFavourite })
                 <Card.Header as="h5">{data.title}   
            {
                isFav
-               ?    <BookmarkHeartFill className="mx-5" onClick={() => toggleFavourite(job._id)}/>
+               ?    <BookmarkHeartFill className="mx-5" onClick={toggleFavourite}/>
                :  <BookmarkHeart className="mx-5" onClick={toggleFavourite}/>
            }
                

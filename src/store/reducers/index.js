@@ -1,5 +1,5 @@
 
-const initialState = {
+export const initialState = {
     favourites: []
 }
 
@@ -14,7 +14,7 @@ export default function mainReducer(state = initialState, action){
         case 'REMOVE_FROM_FAVOURITE':
         return {
             ...state,
-            favourites: state.favourites.filter()
+            favourites: state.favourites.filter(job => job !== payload)
         }
         default: return state
     }
