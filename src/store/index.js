@@ -1,6 +1,9 @@
-import {createStore} from "redux"
+import {createStore, applyMiddleware, compose } from "redux"
 import mainReducer from "./reducers"
 import initialState from "./reducers"
+import thunk from 'redux-thunk'
+ 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-export default createStore(mainReducer
-    )
+const configureStore = createStore(mainReducer, initialState)
+export default configureStore

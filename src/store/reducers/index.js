@@ -1,3 +1,7 @@
+import {
+    ADD_TO_FAVOURITE,
+    REMOVE_FROM_FAVOURITE
+} from "../actions"
 
 export const initialState = {
     favourites: []
@@ -6,12 +10,12 @@ export const initialState = {
 export default function mainReducer(state = initialState, action){
     const {type, payload} = action
     switch(type){
-        case 'ADD_TO_FAVOURITE': 
+        case ADD_TO_FAVOURITE: 
         return {
             ...state,
             favourites: [...state.favourites, payload]
         }
-        case 'REMOVE_FROM_FAVOURITE':
+        case REMOVE_FROM_FAVOURITE:
         return {
             ...state,
             favourites: state.favourites.filter(job => job !== payload)

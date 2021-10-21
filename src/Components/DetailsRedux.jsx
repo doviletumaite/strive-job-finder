@@ -10,6 +10,7 @@ const mapDispatchToProps = (dispatch) =>({
     addToFav: (job) => dispatch(addToFavourite(job)),
     removeFromFav: (job) => dispatch(removeFromFavourite(job))
 })
+
 const DetailsRedux = ({ match, favourites, addToFav, removeFromFav }) => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -37,7 +38,7 @@ const DetailsRedux = ({ match, favourites, addToFav, removeFromFav }) => {
   }, [match.params.jobID]);
   
   const isFav = favourites.includes(data)
-  const toggleFavourite = isFav ? addToFav(data) : removeFromFav(data)
+  const toggleFavourite = () => {isFav ? addToFav(data) : removeFromFav(data)}
 
   return( 
   

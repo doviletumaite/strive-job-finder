@@ -20,9 +20,7 @@ const Cards = ({jobs, id }) => {
                 {jobs.title}</div></Card.Header>
                <Card.Body>
                  <Card.Title>{jobs.company_name}</Card.Title>
-                 <Card.Text>
-                 <div dangerouslySetInnerHTML={{ __html: jobs.description }}></div>
-                 </Card.Text>
+               
                  <Link to={{ pathname: jobs.url }} target='_blank'>{jobs.url}</Link>
                </Card.Body>
              </Card>
